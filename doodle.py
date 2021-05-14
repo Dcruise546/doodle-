@@ -16,7 +16,6 @@ class Paint:
     text = IntVar()
     bold = IntVar()
     italic = IntVar()
-    images = PhotoImage()
     x_pos, y_pos = None, None
     x_start, y_start, x_final, y_final = None, None, None, None
     control = "up"
@@ -35,9 +34,9 @@ class Paint:
         file_menu.add_command(label="📂 Open")
         file_menu.add_command(label="📥 Save")
         file_submenu = Menu(file_menu)
-        file_submenu.add_radiobutton(label="📊 Png", variable=self.images)
-        file_submenu.add_radiobutton(label="💷 Jpeg", variable=self.images)
-        file_submenu.add_radiobutton(label="🧧 Gif", variable=self.images)
+        file_submenu.add_radiobutton(label="📊 Png")
+        file_submenu.add_radiobutton(label="💷 Jpeg")
+        file_submenu.add_radiobutton(label="🧧 Gif")
         file_menu.add_cascade(label="💾 Save as", menu=file_submenu)
         file_menu.add_separator()
         file_menu.add_command(label="❌ Quit", command=self.quit)
@@ -46,9 +45,9 @@ class Paint:
         # FONT MENU:
         font_menu = Menu(menu, tearoff=0)
         type_submenu = Menu(font_menu)
-        type_submenu.add_radiobutton(label="🛑 Times", variable=self.font)
-        type_submenu.add_radiobutton(label="🛑 Courier", variable=self.font)
-        type_submenu.add_radiobutton(label="🛑 Ariel", variable=self.font)
+        type_submenu.add_radiobutton(label="Times", variable=self.font)
+        type_submenu.add_radiobutton(label="Courier", variable=self.font)
+        type_submenu.add_radiobutton(label="Ariel", variable=self.font)
         font_menu.add_cascade(label="Font style", menu=type_submenu)
 
         size_submenu = Menu(font_menu)
@@ -118,8 +117,8 @@ class Paint:
                                         command=None)
         self.parallelogram_btn.place(x=0, y=485)
 
-        assert isinstance(Image.open("Pictures/traingle.jpg").resize, object)
-        self.triangle_img = ImageTk.PhotoImage(Image.open("Pictures/traingle.jpg").resize((20, 20), Image.ANTIALIAS))
+        assert isinstance(Image.open("Pictures/triangle.jpg").resize, object)
+        self.triangle_img = ImageTk.PhotoImage(Image.open("Pictures/triangle.jpg").resize((20, 20), Image.ANTIALIAS))
         self.triangle_btn = Button(root, image=self.triangle_img, fg="red", bg="white",
                                    font=("Arial", 10, "bold"), relief=RAISED, bd=3, command=None)
         self.triangle_btn.place(x=37, y=455)
