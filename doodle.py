@@ -4,7 +4,7 @@ from tkinter.ttk import Scale
 from PIL import ImageTk, Image
 
 root = Tk()
-root.geometry("800x600")
+root.geometry("1350x712")
 root.title("DOODLE")
 Icon = PhotoImage(file="doodle.png")
 root.iconphoto(False, Icon)
@@ -104,7 +104,7 @@ class Paint:
         self.pen_size1 = Scale(self.pen_size, orient=VERTICAL, from_=50, to=0, length=120)
         self.pen_size1.set(1)
         self.pen_size1.grid(row=0, column=1, padx=15)
-        self.canvas = Canvas(root, bd=6, bg="white", relief=GROOVE, height=500, width=700)
+        self.canvas = Canvas(root, bd=6, bg="white", relief=GROOVE, height=600, width=1000)
         self.canvas.place(x=80, y=0)
         self.shapes = Label(root, text="Shapes", bd=4, bg="white", width=8, relief=RIDGE, command=None)
         self.shapes.place(x=0, y=430)
@@ -138,7 +138,7 @@ class Paint:
         x_start, y_start = (event.x - 2), (event.y - 2)
         x_final, y_final = (event.x + 2), (event.y + 2)
 
-        self.canvas.create_oval(x_start, y_start, x_final, y_final, fill="black", outline=self.pen_color,
+        self.canvas.create_oval(x_start, y_start, x_final, y_final, fill=self.pen_color, outline=self.pen_color,
                                 width=self.pen_size1.get())
 
     def select_color(self, col):
