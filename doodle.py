@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import Scale
-from tkinter.colorchooser import *
 from PIL import ImageTk, Image
 
 root = Tk()
@@ -21,10 +20,11 @@ class Paint:
     control = "up"
 
     @staticmethod
-    def quit(self):
+    def quit():
         root.quit()
 
-    def about(self):
+    @staticmethod
+    def about():
         messagebox.showinfo('DOODLE', 'Go to the help in the main window')
 
     def menubar(self):
@@ -78,20 +78,21 @@ class Paint:
 
     def __init__(self, root):
         self.menubar()
-        self.pen_color="black"
+        self.pen_color = "black"
         self.color_fill = LabelFrame(root, text="Color", font=("Times", 15, "bold"), bd=5, relief=RIDGE, bg="white")
         self.color_fill.place(x=0, y=0, width=70, height=185)
         colors = ["#000000", "#FFFFFF", "#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF", "#FFC0CB",
                   "#800080", "#00FFFF", "#808080"]
         i = j = 0
         for color in colors:
-            Button(self.color_fill, bg=color, bd=2, relief=RIDGE, width=3,command=lambda col=color:self.select_color(col)).grid(row=i, column=j)
+            Button(self.color_fill, bg=color, bd=2, relief=RIDGE, width=3,
+                   command=lambda col=color: self.select_color(col)).grid(row=i, column=j)
             i = i + 1
             if i == 6:
                 i = 0
                 j = 1
         # CREATING BUTTONS:
-        self.eraser = Button(root, text="🗃 Eraser", bd=4, bg="white", width=8, relief=RIDGE,command=self.eraser)
+        self.eraser = Button(root, text="🗃 Eraser", bd=4, bg="white", width=8, relief=RIDGE, command=self.eraser)
         self.eraser.place(x=0, y=187)
         self.clear = Button(root, text="Clear", bd=4, bg="white", width=8, relief=RIDGE, command=None)
         self.clear.place(x=0, y=217)
@@ -145,6 +146,7 @@ class Paint:
 
     def eraser(self):
         self.pen_color = "white"
+
 
 paint = Paint(root)
 root.mainloop()
