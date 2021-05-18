@@ -92,9 +92,17 @@ class Paint:
                 i = 0
                 j = 1
         # CREATING BUTTONS:
-        self.eraser = Button(root, text="🗃 Eraser", bd=4, bg="white", width=8, relief=RIDGE, command=self.eraser)
-        self.eraser.place(x=0, y=187)
-        self.clear = Button(root, text="Clear", bd=4, bg="white", width=8, relief=RIDGE, command=None)
+        self.eraser_img = ImageTk.PhotoImage(
+            Image.open("eraser.png").resize((28, 20), Image.ANTIALIAS))
+        self.eraser_btn = Button(root, image=self.eraser_img, fg="red", bg="white", font=("Arial", 10, "bold")
+                                 , relief=RAISED, bd=3, command=self.eraser)
+        self.eraser_btn.place(x=0, y=187)
+        self.colorbox_img = ImageTk.PhotoImage(
+            Image.open("bucket.jpg").resize((25, 20), Image.ANTIALIAS))
+        self.colorbox_btn = Button(root, image=self.colorbox_img, fg="red", bg="white", font=("Arial", 10, "bold"),
+                                   relief=RAISED, bd=3, command=None)
+        self.colorbox_btn.place(x=37, y=187)
+        self.clear = Button(root, text="Clear", bd=4, bg="white", width=8, relief=RIDGE, command=lambda: self.canvas.delete("all"))
         self.clear.place(x=0, y=217)
         self.canvas = Button(root, text="Canvas", bd=4, bg="white", width=8, relief=RIDGE, command=None)
         self.canvas.place(x=0, y=247)
