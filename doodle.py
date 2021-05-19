@@ -93,16 +93,17 @@ class Paint:
                 j = 1
         # CREATING BUTTONS:
         self.eraser_img = ImageTk.PhotoImage(
-            Image.open("eraser.png").resize((28, 20), Image.ANTIALIAS))
+            Image.open("Pictures/eraser.png").resize((28, 20), Image.ANTIALIAS))
         self.eraser_btn = Button(root, image=self.eraser_img, fg="red", bg="white", font=("Arial", 10, "bold")
                                  , relief=RAISED, bd=3, command=self.eraser)
         self.eraser_btn.place(x=0, y=187)
         self.colorbox_img = ImageTk.PhotoImage(
-            Image.open("bucket.jpg").resize((25, 20), Image.ANTIALIAS))
+            Image.open("Pictures/bucket.jpg").resize((25, 20), Image.ANTIALIAS))
         self.colorbox_btn = Button(root, image=self.colorbox_img, fg="red", bg="white", font=("Arial", 10, "bold"),
                                    relief=RAISED, bd=3, command=None)
         self.colorbox_btn.place(x=37, y=187)
-        self.clear = Button(root, text="Clear", bd=4, bg="white", width=8, relief=RIDGE, command=lambda: self.canvas.delete("all"))
+        self.clear = Button(root, text="Clear", bd=4, bg="white", width=8, relief=RIDGE,
+                            command=lambda: self.canvas.delete("all"))
         self.clear.place(x=0, y=217)
         self.canvas = Button(root, text="Canvas", bd=4, bg="white", width=8, relief=RIDGE, command=None)
         self.canvas.place(x=0, y=247)
@@ -121,12 +122,12 @@ class Paint:
                           font=("Arial", 10, "bold"), relief=RAISED, bd=3, command=None)
         self.rec.place(x=0, y=455)
 
-        self.parallelogram_img = ImageTk.PhotoImage(
-            Image.open("Pictures/parallelogram.png").resize((20, 20), Image.ANTIALIAS))
-        self.parallelogram_btn = Button(root, image=self.parallelogram_img, fg="red", bg="white",
+        self.circle_img = ImageTk.PhotoImage(
+            Image.open("Pictures/circle.png").resize((20, 20), Image.ANTIALIAS))
+        self.circle_btn = Button(root, image=self.circle_img, fg="red", bg="white",
                                         font=("Arial", 10, "bold"), relief=RAISED, bd=3,
                                         command=None)
-        self.parallelogram_btn.place(x=0, y=485)
+        self.circle_btn.place(x=0, y=485)
 
         assert isinstance(Image.open("Pictures/triangle.jpg").resize, object)
         self.triangle_img = ImageTk.PhotoImage(Image.open("Pictures/triangle.jpg").resize((20, 20), Image.ANTIALIAS))
