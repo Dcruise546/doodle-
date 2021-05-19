@@ -27,7 +27,7 @@ class Paint:
     def about():
         messagebox.showinfo('DOODLE', 'Go to the help in the main window')
 
-    def menu_bar(self):
+    def menubar(self):
         menu = Menu(root)
 
         # FILE MENU
@@ -76,16 +76,13 @@ class Paint:
 
         root.config(menu=menu)
 
-    def __init__(self):
-        self.my_label = Label(bd=5, relief=RIDGE, font="Times 10 bold", fg="black", bg="white")
-        self.my_label.place(x=1010, y=613)
-        self.menu_bar()
+    def __init__(self, root):
+        self.menubar()
         self.pen_color = "black"
-        self.save_color = self.pen_color
         self.color_fill = LabelFrame(root, text="Color", font=("Times", 15, "bold"), bd=5, relief=RIDGE, bg="white")
         self.color_fill.place(x=0, y=0, width=70, height=185)
-        colors = ["#000000", "#FFFFFF", "#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#00ffd9", "#FF00FF", "#FFC0CB",
-                  "#800080", "#9370DB", "#808080"]
+        colors = ["#000000", "#FFFFFF", "#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF", "#FFC0CB",
+                  "#800080", "#00FFFF", "#808080"]
         i = j = 0
         for color in colors:
             Button(self.color_fill, bg=color, bd=2, relief=RIDGE, width=3,
@@ -95,11 +92,10 @@ class Paint:
                 i = 0
                 j = 1
         # CREATING BUTTONS:
-        self.stack = []
         self.eraser_img = ImageTk.PhotoImage(
             Image.open("Pictures/eraser.png").resize((28, 20), Image.ANTIALIAS))
-        self.eraser_btn = Button(root, image=self.eraser_img, fg="red", bg="white", font=("Arial", 10, "bold"),
-                                 relief=RAISED, bd=3, command=self.eraser)
+        self.eraser_btn = Button(root, image=self.eraser_img, fg="red", bg="white", font=("Arial", 10, "bold")
+                                 , relief=RAISED, bd=3, command=self.eraser)
         self.eraser_btn.place(x=0, y=187)
         self.colorbox_img = ImageTk.PhotoImage(
             Image.open("Pictures/bucket.jpg").resize((25, 20), Image.ANTIALIAS))
@@ -128,8 +124,9 @@ class Paint:
 
         self.circle_img = ImageTk.PhotoImage(
             Image.open("Pictures/circle.png").resize((20, 20), Image.ANTIALIAS))
-        self.circle_btn = Button(root, image=self.circle_img, fg="red", bg="white", font=("Arial", 10, "bold"),
-                                 relief=RAISED, bd=3, command=None)
+        self.circle_btn = Button(root, image=self.circle_img, fg="red", bg="white",
+                                        font=("Arial", 10, "bold"), relief=RAISED, bd=3,
+                                        command=None)
         self.circle_btn.place(x=0, y=485)
 
         assert isinstance(Image.open("Pictures/triangle.jpg").resize, object)
@@ -145,7 +142,6 @@ class Paint:
 
         # mouse drag
         self.canvas.bind("<B1-Motion>", self.paint_app)
-        self.canvas.bind('<Motion>', self.coordinates)
 
     def paint_app(self, event):
         x_start, y_start = (event.x - 2), (event.y - 2)
@@ -160,9 +156,6 @@ class Paint:
     def eraser(self):
         self.pen_color = "white"
 
-    def coordinates(self, event):
-        self.my_label["text"] = f'x={event.x} y={event.y}'
 
-
-paint = Paint()
+paint = Paint(root)
 root.mainloop()
