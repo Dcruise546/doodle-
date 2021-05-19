@@ -4,7 +4,7 @@ from tkinter.ttk import Scale
 from PIL import ImageTk, Image
 
 root = Tk()
-root.geometry("1350x712")
+root.attributes('-fullscreen', False)
 root.title("DOODLE")
 Icon = PhotoImage(file="doodle.png")
 root.iconphoto(False, Icon)
@@ -125,8 +125,8 @@ class Paint:
         self.circle_img = ImageTk.PhotoImage(
             Image.open("Pictures/circle.png").resize((20, 20), Image.ANTIALIAS))
         self.circle_btn = Button(root, image=self.circle_img, fg="red", bg="white",
-                                        font=("Arial", 10, "bold"), relief=RAISED, bd=3,
-                                        command=None)
+                                 font=("Arial", 10, "bold"), relief=RAISED, bd=3,
+                                 command=None)
         self.circle_btn.place(x=0, y=485)
 
         assert isinstance(Image.open("Pictures/triangle.jpg").resize, object)
@@ -142,6 +142,10 @@ class Paint:
 
         # mouse drag
         self.canvas.bind("<B1-Motion>", self.paint_app)
+
+        # Creating status bar
+        self.status = Label(root, text="Mouse position", bd=2, relief=SUNKEN, anchor=W)
+        self.status.pack(side=BOTTOM, fill=X)
 
     def paint_app(self, event):
         x_start, y_start = (event.x - 2), (event.y - 2)
