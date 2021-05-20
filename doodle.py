@@ -4,7 +4,7 @@ from tkinter.ttk import Scale
 from PIL import ImageTk, Image
 
 root = Tk()
-root.geometry("1350x712")
+root.attributes("-fullscreen", False)
 root.title("DOODLE")
 Icon = PhotoImage(file="doodle.png")
 root.iconphoto(False, Icon)
@@ -77,8 +77,8 @@ class Paint:
         root.config(menu=menu)
 
     def __init__(self):
-        self.my_label=Label(bd=5, relief = RIDGE, font = 'Times 10 bold', bg='white', fg='black')
-        self.my_label.place(x=1010, y=615)
+        self.my_label = Label(bd=5, relief = RIDGE, font = 'Times 10 bold', bg='white', fg='black')
+        self.my_label.place(x=910, y=610)
         self.menu_bar()
         self.pen_color = "black"
         self.color_fill = LabelFrame(root, text="Color", font=("Times", 15, "bold"), bd=5, relief=RIDGE, bg="white")
@@ -145,6 +145,9 @@ class Paint:
         self.canvas.bind("<B1-Motion>", self.paint_app)
         self.canvas.bind("<Motion>", self.coordinates)
 
+        self.status = Label(root, text="Mouse position", bd=2, relief=SUNKEN, anchor=W)
+        self.status.pack(side=BOTTOM, fill=X)
+
     def paint_app(self, event):
         x_start, y_start = (event.x - 2), (event.y - 2)
         x_final, y_final = (event.x + 2), (event.y + 2)
@@ -159,7 +162,7 @@ class Paint:
         self.pen_color = "white"
 
     def coordinates(self, event):
-        self.my_label['text'] = f'x={event.x} y={event.y}'
+        self.my_label['text'] = f'Mouse coordinates : ({event.x},{event.y})'
 
 
 
