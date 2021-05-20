@@ -8,8 +8,6 @@ root.attributes("-fullscreen", False)
 root.title("DOODLE")
 Icon = PhotoImage(file="doodle.png")
 root.iconphoto(False, Icon)
-root.columnconfigure(0, weight=1)
-root.rowconfigure(0, weight=1)
 
 
 class Paint:
@@ -164,7 +162,7 @@ class Paint:
         self.pen_color = "white"
 
     def coordinates(self, event):
-        self.status['text'] = f'Cursor coordinates : ({event.x},{event.y})'
+        self.status['text'] = f'{event.x}, {event.y}px'
 
 
 paint = Paint()
