@@ -145,7 +145,7 @@ class Paint:
         self.canvas.bind("<Motion>", self.coordinates)
 
         # status bar
-        self.status = Label(relief=RIDGE, font='Times 17 bold', bg='white', fg='black', anchor=W)
+        self.status = Label(relief=RIDGE, font='Times 13 bold', bg='white', fg='black', anchor=W)
         self.status.pack(side=BOTTOM, fill=X)
 
     def paint_app(self, event):
