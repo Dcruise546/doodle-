@@ -77,7 +77,7 @@ class Paint:
         root.config(menu=menu)
 
     def __init__(self):
-        self.my_label = Label(bd=5, relief = RIDGE, font = 'Times 10 bold', bg='white', fg='black')
+        self.my_label = Label(bd=5, relief=RIDGE, font='Times 10 bold', bg='white', fg='black')
         self.my_label.place(x=910, y=610)
         self.menu_bar()
         self.pen_color = "black"
@@ -162,8 +162,7 @@ class Paint:
         self.pen_color = "white"
 
     def coordinates(self, event):
-        self.my_label['text'] = f'Mouse coordinates : ({event.x},{event.y})'
-
+        self.my_label['text'] = f'Cursor coordinates : ({event.x},{event.y})'
 
 
 paint = Paint()
