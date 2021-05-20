@@ -8,6 +8,8 @@ root.attributes("-fullscreen", False)
 root.title("DOODLE")
 Icon = PhotoImage(file="doodle.png")
 root.iconphoto(False, Icon)
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
 
 
 class Paint:
@@ -77,8 +79,7 @@ class Paint:
         root.config(menu=menu)
 
     def __init__(self):
-        self.my_label = Label(bd=5, relief=RIDGE, font='Times 10 bold', bg='white', fg='black')
-        self.my_label.place(x=910, y=610)
+
         self.menu_bar()
         self.pen_color = "black"
         self.color_fill = LabelFrame(root, text="Color", font=("Times", 15, "bold"), bd=5, relief=RIDGE, bg="white")
@@ -145,7 +146,8 @@ class Paint:
         self.canvas.bind("<B1-Motion>", self.paint_app)
         self.canvas.bind("<Motion>", self.coordinates)
 
-        self.status = Label(root, text="Mouse position", bd=2, relief=SUNKEN, anchor=W)
+        # status bar
+        self.status = Label(relief=RIDGE, font='Times 17 bold', bg='white', fg='black', anchor=W)
         self.status.pack(side=BOTTOM, fill=X)
 
     def paint_app(self, event):
@@ -162,7 +164,7 @@ class Paint:
         self.pen_color = "white"
 
     def coordinates(self, event):
-        self.my_label['text'] = f'Cursor coordinates : ({event.x},{event.y})'
+        self.status['text'] = f'Cursor coordinates : ({event.x},{event.y})'
 
 
 paint = Paint()
